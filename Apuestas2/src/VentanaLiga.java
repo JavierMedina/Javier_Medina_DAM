@@ -12,18 +12,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JComboBox;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class VentanaLiga extends JFrame {
 
 	private JPanel contentPane;
 	private Liga liga;
+	private Faltas faltas;
 	private VentanaLiga vLiga;
 	private Equipo equipo;
 	private JTextField textField;
 	private JTextField textField_1;
 	private VentanaEquipo frameEquipo;
+	private VentanaFaltas frameFaltas;
 	private JComboBox<Equipo> comboBox;
 
 	/**
@@ -96,6 +102,22 @@ public class VentanaLiga extends JFrame {
 		JButton button = new JButton("-");
 		button.setBounds(61, 162, 41, 23);
 		contentPane.add(button);
+		
+		JButton btnFaltas = new JButton("Faltas");
+		btnFaltas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					openFaltasWindow(faltas);
+			}
+		});
+		btnFaltas.setBounds(284, 162, 89, 23);
+		contentPane.add(btnFaltas);
+	}
+	
+	private void openFaltasWindow(Faltas faltas)
+	{
+		frameFaltas = new VentanaFaltas();
+		frameFaltas.setVisible(true);
+		frameFaltas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	private void openEquipoWindow(Equipo equipo,boolean modifica)
